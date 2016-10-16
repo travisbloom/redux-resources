@@ -1,6 +1,5 @@
 exports[`test will update the state after the error action 1`] = `
 Object {
-  "isFetching": false,
   "mockResources": Object {
     "errors": Array [
       "This is an initial error",
@@ -12,9 +11,22 @@ Object {
     "lastListedAt": null,
     "lastRetrievedAt": null,
     "lastUpdatedAt": null,
-    "resourceLists": Object {},
+    "resourceLists": Object {
+      "key=30&key=0&key=\"someValue\"": Object {
+        "result": Array [
+          "resourceId",
+        ],
+      },
+    },
     "resourceListsBeingFetched": Array [],
-    "resources": Object {},
+    "resources": Object {
+      "resourceId": Object {
+        "id": "resourceId",
+        "prop1": "initial prop1",
+        "prop2": "initial prop2",
+        "relatedResource": "relatedResourceId",
+      },
+    },
     "resourcesBeingFetched": Array [],
     "selectedResource": null,
     "selectedResourceList": null,
@@ -47,9 +59,23 @@ Object {
     "lastListedAt": null,
     "lastRetrievedAt": null,
     "lastUpdatedAt": null,
-    "resourceLists": Object {},
+    "resourceLists": Object {
+      "key=30&key=0&key=\"someValue\"": Object {
+        "result": Array [
+          "resourceId",
+        ],
+      },
+    },
     "resourceListsBeingFetched": Array [],
-    "resources": Object {},
+    "resources": Object {
+      "resourceId": Object {
+        "id": "resourceId",
+        "isDeleting": true,
+        "prop1": "initial prop1",
+        "prop2": "initial prop2",
+        "relatedResource": "relatedResourceId",
+      },
+    },
     "resourcesBeingFetched": Array [],
     "selectedResource": null,
     "selectedResourceList": null,
@@ -77,23 +103,20 @@ Object {
   "mockResources": Object {
     "errors": Array [],
     "isFetching": false,
-    "lastCreatedAt": "2016-01-01T05:00:00.000Z",
-    "lastDeletedAt": null,
+    "lastCreatedAt": null,
+    "lastDeletedAt": "2016-01-01T05:00:00.000Z",
     "lastListedAt": null,
     "lastRetrievedAt": null,
     "lastUpdatedAt": null,
-    "resourceLists": Object {},
-    "resourceListsBeingFetched": Array [],
-    "resources": Object {
-      "resourceId": Object {
-        "id": "resourceId",
-        "prop1": "initial prop1",
-        "prop2": "initial prop2",
-        "relatedResource": "relatedResourceId",
+    "resourceLists": Object {
+      "key=30&key=0&key=\"someValue\"": Object {
+        "result": Array [],
       },
     },
+    "resourceListsBeingFetched": Array [],
+    "resources": Object {},
     "resourcesBeingFetched": Array [],
-    "selectedResource": "resourceId",
+    "selectedResource": null,
     "selectedResourceList": null,
   },
   "relatedMockResources": Object {
@@ -106,12 +129,7 @@ Object {
     "lastUpdatedAt": null,
     "resourceLists": Object {},
     "resourceListsBeingFetched": Array [],
-    "resources": Object {
-      "relatedResourceId": Object {
-        "id": "relatedResourceId",
-        "relatedProp1": "initial relatedProp1",
-      },
-    },
+    "resources": Object {},
     "resourcesBeingFetched": Array [],
     "selectedResource": null,
     "selectedResourceList": null,

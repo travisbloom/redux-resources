@@ -1,6 +1,5 @@
 exports[`test will update the state after the error action 1`] = `
 Object {
-  "isFetching": false,
   "mockResources": Object {
     "errors": Array [
       "This is an initial error",
@@ -50,7 +49,9 @@ Object {
     "resourceLists": Object {},
     "resourceListsBeingFetched": Array [],
     "resources": Object {},
-    "resourcesBeingFetched": Array [],
+    "resourcesBeingFetched": Array [
+      "resourceId",
+    ],
     "selectedResource": null,
     "selectedResourceList": null,
   },
@@ -77,10 +78,10 @@ Object {
   "mockResources": Object {
     "errors": Array [],
     "isFetching": false,
-    "lastCreatedAt": "2016-01-01T05:00:00.000Z",
+    "lastCreatedAt": null,
     "lastDeletedAt": null,
     "lastListedAt": null,
-    "lastRetrievedAt": null,
+    "lastRetrievedAt": "2016-01-01T05:00:00.000Z",
     "lastUpdatedAt": null,
     "resourceLists": Object {},
     "resourceListsBeingFetched": Array [],

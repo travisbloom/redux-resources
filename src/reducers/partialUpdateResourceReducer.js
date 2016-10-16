@@ -1,10 +1,10 @@
 import {
-    UPDATE_RESOURCE_REQUEST,
-    UPDATE_RESOURCE_REQUEST_SUCCESS,
-    UPDATE_RESOURCE_REQUEST_ERROR,
+    PARTIAL_UPDATE_RESOURCE_REQUEST,
+    PARTIAL_UPDATE_RESOURCE_REQUEST_SUCCESS,
+    PARTIAL_UPDATE_RESOURCE_REQUEST_ERROR,
 } from '../constants'
 
-const updateResourceReducer = (state, action) => {
+const partialUpdateResourceReducer = (state, action) => {
     const { payload, meta } = action
     const {
         id,
@@ -19,7 +19,7 @@ const updateResourceReducer = (state, action) => {
     const resourceState = state[resource]
 
     switch (reduxResourcesActionType) {
-    case UPDATE_RESOURCE_REQUEST:
+    case PARTIAL_UPDATE_RESOURCE_REQUEST:
         return {
             ...state,
             [resource]: {
@@ -35,7 +35,7 @@ const updateResourceReducer = (state, action) => {
             },
         }
 
-    case UPDATE_RESOURCE_REQUEST_SUCCESS: {
+    case PARTIAL_UPDATE_RESOURCE_REQUEST_SUCCESS: {
         const { entities } = normalizedResponse
         return Object.keys(state).reduce((newState, resourceKey) => {
             if (resourceKey !== resource && entities[resourceKey]) {
@@ -64,7 +64,7 @@ const updateResourceReducer = (state, action) => {
         }, {})
     }
 
-    case UPDATE_RESOURCE_REQUEST_ERROR: {
+    case PARTIAL_UPDATE_RESOURCE_REQUEST_ERROR: {
         if (isOptimisticUpdate) {
             return {
                 ...state,
@@ -103,4 +103,4 @@ const updateResourceReducer = (state, action) => {
     }
 }
 
-export default updateResourceReducer
+export default partialUpdateResourceReducer

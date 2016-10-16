@@ -30,8 +30,8 @@
     "normalizr": "^2.2.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0"
-},
-"jest": {
+  },
+  "jest": {
     "setupFiles": ["<rootDir>/src/tests.js"]
-}
+  }
 }

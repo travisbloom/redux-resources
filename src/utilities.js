@@ -4,15 +4,12 @@ const generateConstantFromString = string => string.replace(/([A-Z])/g, $1 => `_
 
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
 
-const serializeOrderedQuery = (query = {}) => {
-    return Object.keys(query)
-        // remove blank query params
-        .filter(key => !['', undefined, null].includes(query[key]))
-        // sort to ensure consistant ordering
+const serializeOrderedQuery = (query = {}) => (
+    Object.keys(query)
         .sort()
-        .map(key => key)
+        .map(key => `key=${JSON.stringify(query[key])}`)
         .join('&')
-}
+)
 
 
 const removeFromArray = (value, array) => {
@@ -20,7 +17,7 @@ const removeFromArray = (value, array) => {
     if (valueIndex === -1) return array
     return [
         ...array.slice(0, valueIndex),
-        ...array.slice(valueIndex),
+        ...array.slice(valueIndex + 1),
     ]
 }
 
@@ -34,6 +31,7 @@ module.exports = {
     defaultIsCached,
     capitalize,
     removeFromArray,
+    addToArray,
     generateConstantFromString,
     serializeOrderedQuery,
 }

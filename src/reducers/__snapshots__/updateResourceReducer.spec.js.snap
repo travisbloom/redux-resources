@@ -1,6 +1,5 @@
 exports[`test will update the state after the error action 1`] = `
 Object {
-  "isFetching": false,
   "mockResources": Object {
     "errors": Array [
       "This is an initial error",
@@ -14,7 +13,14 @@ Object {
     "lastUpdatedAt": null,
     "resourceLists": Object {},
     "resourceListsBeingFetched": Array [],
-    "resources": Object {},
+    "resources": Object {
+      "resourceId": Object {
+        "id": "resourceId",
+        "prop1": "initial prop1",
+        "prop2": "initial prop2",
+        "relatedResource": "relatedResourceId",
+      },
+    },
     "resourcesBeingFetched": Array [],
     "selectedResource": null,
     "selectedResourceList": null,
@@ -37,6 +43,56 @@ Object {
 }
 `;
 
+exports[`test will update the state after the error action on an optimistic update 1`] = `
+Object {
+  "mockResources": Object {
+    "errors": Array [
+      "This is an initial error",
+      "This is another error",
+    ],
+    "isFetching": false,
+    "lastCreatedAt": null,
+    "lastDeletedAt": null,
+    "lastListedAt": null,
+    "lastRetrievedAt": null,
+    "lastUpdatedAt": null,
+    "resourceLists": Object {},
+    "resourceListsBeingFetched": Array [],
+    "resources": Object {
+      "resourceId": Object {
+        "id": "resourceId",
+        "prop1": "initial prop1",
+        "prop2": "initial prop2",
+        "relatedResource": "relatedResourceId",
+      },
+    },
+    "resourcesBeingFetched": Array [],
+    "selectedResource": null,
+    "selectedResourceList": null,
+  },
+  "relatedMockResources": Object {
+    "errors": Array [],
+    "isFetching": false,
+    "lastCreatedAt": null,
+    "lastDeletedAt": null,
+    "lastListedAt": null,
+    "lastRetrievedAt": null,
+    "lastUpdatedAt": null,
+    "resourceLists": Object {},
+    "resourceListsBeingFetched": Array [],
+    "resources": Object {
+      "relatedResourceId": Object {
+        "id": "relatedResourceId",
+        "relatedProp1": "initial relatedProp1",
+      },
+    },
+    "resourcesBeingFetched": Array [],
+    "selectedResource": null,
+    "selectedResourceList": null,
+  },
+}
+`;
+
 exports[`test will update the state after the initial action 1`] = `
 Object {
   "mockResources": Object {
@@ -49,7 +105,15 @@ Object {
     "lastUpdatedAt": null,
     "resourceLists": Object {},
     "resourceListsBeingFetched": Array [],
-    "resources": Object {},
+    "resources": Object {
+      "resourceId": Object {
+        "id": "resourceId",
+        "isUpdating": true,
+        "prop1": "initial prop1",
+        "prop2": "initial prop2",
+        "relatedResource": "relatedResourceId",
+      },
+    },
     "resourcesBeingFetched": Array [],
     "selectedResource": null,
     "selectedResourceList": null,
@@ -77,23 +141,23 @@ Object {
   "mockResources": Object {
     "errors": Array [],
     "isFetching": false,
-    "lastCreatedAt": "2016-01-01T05:00:00.000Z",
+    "lastCreatedAt": null,
     "lastDeletedAt": null,
     "lastListedAt": null,
     "lastRetrievedAt": null,
-    "lastUpdatedAt": null,
+    "lastUpdatedAt": "2016-01-01T05:00:00.000Z",
     "resourceLists": Object {},
     "resourceListsBeingFetched": Array [],
     "resources": Object {
       "resourceId": Object {
         "id": "resourceId",
         "prop1": "initial prop1",
-        "prop2": "initial prop2",
+        "prop2": "UPDATED PROP_1",
         "relatedResource": "relatedResourceId",
       },
     },
     "resourcesBeingFetched": Array [],
-    "selectedResource": "resourceId",
+    "selectedResource": null,
     "selectedResourceList": null,
   },
   "relatedMockResources": Object {

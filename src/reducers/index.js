@@ -1,3 +1,5 @@
+import routeReduxResourceAction from './routeReduxResourceAction'
+
 const getResourceInitialState = () => ({
     selectedResource: null,
     selectedResourceList: null,
@@ -14,6 +16,11 @@ const getResourceInitialState = () => ({
     lastUpdatedAt: null,
 })
 
+const generateResources = reducer => (state, action) => (
+    reducer(routeReduxResourceAction(state, action))
+)
+
 module.exports = {
     getResourceInitialState,
+    generateResources,
 }

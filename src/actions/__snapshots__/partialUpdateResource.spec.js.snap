@@ -1,7 +1,8 @@
 exports[`test will have a error action 1`] = `
 Object {
   "meta": Object {
-    "reduxResourcesActionType": "CREATE_RESOURCE_REQUEST_ERROR",
+    "id": "resourceId",
+    "reduxResourcesActionType": "PARTIAL_UPDATE_RESOURCE_REQUEST_ERROR",
     "resource": "mockResources",
     "timestamp": "2016-01-01T05:00:00.000Z",
   },
@@ -9,20 +10,45 @@ Object {
     "This is an initial error",
     "This is another error",
   ],
-  "type": "CREATE_MOCK_RESOURCES_REQUEST_ERROR",
+  "type": "PARTIAL_UPDATE_MOCK_RESOURCES_REQUEST_ERROR",
+}
+`;
+
+exports[`test will have a error action with previous info if its an optimistic update 1`] = `
+Object {
+  "meta": Object {
+    "id": "resourceId",
+    "isOptimisticUpdate": true,
+    "reduxResourcesActionType": "PARTIAL_UPDATE_RESOURCE_REQUEST_ERROR",
+    "replacedLastUpdatedAt": null,
+    "replacedResource": Object {
+      "id": "resourceId",
+      "prop1": "initial prop1",
+      "prop2": "initial prop2",
+      "relatedResource": "relatedResourceId",
+    },
+    "resource": "mockResources",
+    "timestamp": "2016-01-01T05:00:00.000Z",
+  },
+  "payload": Array [
+    "This is an initial error",
+    "This is another error",
+  ],
+  "type": "PARTIAL_UPDATE_MOCK_RESOURCES_REQUEST_ERROR",
 }
 `;
 
 exports[`test will have a success action 1`] = `
 Object {
   "meta": Object {
+    "id": "resourceId",
     "normalizedResponse": Object {
       "entities": Object {
         "mockResources": Object {
           "resourceId": Object {
             "id": "resourceId",
             "prop1": "initial prop1",
-            "prop2": "initial prop2",
+            "prop2": "UPDATED PROP_1",
             "relatedResource": "relatedResourceId",
           },
         },
@@ -37,39 +63,32 @@ Object {
         "resourceId",
       ],
     },
-    "reduxResourcesActionType": "CREATE_RESOURCE_REQUEST_SUCCESS",
+    "reduxResourcesActionType": "PARTIAL_UPDATE_RESOURCE_REQUEST_SUCCESS",
     "resource": "mockResources",
     "timestamp": "2016-01-01T05:00:00.000Z",
   },
   "payload": Object {
     "id": "resourceId",
     "prop1": "initial prop1",
-    "prop2": "initial prop2",
+    "prop2": "UPDATED PROP_1",
     "relatedResource": Object {
       "id": "relatedResourceId",
       "relatedProp1": "initial relatedProp1",
     },
   },
-  "type": "CREATE_MOCK_RESOURCES_REQUEST_SUCCESS",
+  "type": "PARTIAL_UPDATE_MOCK_RESOURCES_REQUEST_SUCCESS",
 }
 `;
 
 exports[`test will have an initial action 1`] = `
 Object {
   "meta": Object {
-    "reduxResourcesActionType": "CREATE_RESOURCE_REQUEST",
+    "id": "resourceId",
+    "reduxResourcesActionType": "PARTIAL_UPDATE_RESOURCE_REQUEST",
     "resource": "mockResources",
     "timestamp": "2016-01-01T05:00:00.000Z",
   },
-  "payload": Object {
-    "id": "resourceId",
-    "prop1": "initial prop1",
-    "prop2": "initial prop2",
-    "relatedResource": Object {
-      "id": "relatedResourceId",
-      "relatedProp1": "initial relatedProp1",
-    },
-  },
-  "type": "CREATE_MOCK_RESOURCES_REQUEST",
+  "payload": "resourceId",
+  "type": "PARTIAL_UPDATE_MOCK_RESOURCES_REQUEST",
 }
 `;

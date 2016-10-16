@@ -1,0 +1,41 @@
+exports[`test will have a error action 1`] = `
+Object {
+  "meta": Object {
+    "id": "resourceId",
+    "reduxResourcesActionType": "DELETE_RESOURCE_REQUEST_ERROR",
+    "resource": "mockResources",
+    "timestamp": "2016-01-01T05:00:00.000Z",
+  },
+  "payload": Array [
+    "This is an initial error",
+    "This is another error",
+  ],
+  "type": "DELETE_MOCK_RESOURCES_REQUEST_ERROR",
+}
+`;
+
+exports[`test will have a success action 1`] = `
+Object {
+  "meta": Object {
+    "id": "resourceId",
+    "reduxResourcesActionType": "DELETE_RESOURCE_REQUEST_SUCCESS",
+    "resource": "mockResources",
+    "timestamp": "2016-01-01T05:00:00.000Z",
+  },
+  "payload": "resourceId",
+  "type": "DELETE_MOCK_RESOURCES_REQUEST_SUCCESS",
+}
+`;
+
+exports[`test will have an initial action 1`] = `
+Object {
+  "meta": Object {
+    "id": "resourceId",
+    "reduxResourcesActionType": "DELETE_RESOURCE_REQUEST",
+    "resource": "mockResources",
+    "timestamp": "2016-01-01T05:00:00.000Z",
+  },
+  "payload": "resourceId",
+  "type": "DELETE_MOCK_RESOURCES_REQUEST",
+}
+`;

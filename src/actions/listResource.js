@@ -21,9 +21,8 @@ const defaultIsCached = obj => !!obj
 *     @property {string} resource - see above for details
 *     @property {function} request - see above for details
 *     @property {function} normalizer - see above for details
-*     @property {string} resourceActionName - see above for details
 */
-const listResource = ({ formatErrors, resource, request, normalizer, isCachedFn }) => {
+const listResource = ({ formatErrors, resource, request, normalizer, isCachedFn, stringifyQueryFn }) => {
     const resourceActionTypeName = generateConstantFromString(resource)
     const initialActionType = `LIST_${resourceActionTypeName}_REQUEST`
     const successActionType = `${initialActionType}_SUCCESS`
@@ -32,6 +31,7 @@ const listResource = ({ formatErrors, resource, request, normalizer, isCachedFn 
     const actionCreatorName = `list${capitalize(resource)}`
 
     const isCached = isCachedFn || defaultIsCached
+    const stringifyQuery = stringifyQueryFn || serializeOrderedQuery
     /**
     * @param {object} the query param object being used to filter the resource request
     * @param {object} the options object
@@ -48,7 +48,7 @@ const listResource = ({ formatErrors, resource, request, normalizer, isCachedFn 
             ...passedQuery,
         }
 
-        const queryString = serializeOrderedQuery(query)
+        const queryString = stringifyQuery(query)
         const state = getState()
         const previousResourceList = selectResourceList(state, resource, queryString)
         const meta = {
@@ -58,12 +58,14 @@ const listResource = ({ formatErrors, resource, request, normalizer, isCachedFn 
             timestamp: new Date().toISOString(),
             ...options,
         }
+
         // if the resource already exists in redux
         if (!shouldIgnoreCache && isCached(previousResourceList, query, options)) {
             // if the requested resource is not the current selected resource
             if (selectSelectedResourceList(state, resource) !== queryString) {
                 dispatch({
                     type: selectActionType,
+                    payload: queryString,
                     meta: { ...meta, reduxResourcesActionType: SELECT_RESOURCE_LIST },
                 })
             }
@@ -77,6 +79,7 @@ const listResource = ({ formatErrors, resource, request, normalizer, isCachedFn 
 
         dispatch({
             type: initialActionType,
+            payload: queryString,
             meta: { ...meta, reduxResourcesActionType: LIST_RESOURCE_REQUEST },
         })
 
@@ -94,7 +97,7 @@ const listResource = ({ formatErrors, resource, request, normalizer, isCachedFn 
         .catch((response) => {
             dispatch({
                 type: errorActionType,
-                errors: formatErrors(response),
+                payload: formatErrors(response),
                 meta: {
                     ...meta,
                     reduxResourcesActionType: LIST_RESOURCE_REQUEST_ERROR,

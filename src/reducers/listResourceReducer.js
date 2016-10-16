@@ -6,54 +6,97 @@ import {
 } from '../constants'
 import { removeFromArray, addToArray } from '../utilities'
 
-export default function getCollectionReducer(state, action) {
+const listResourceReducer = (state, action) => {
     const { payload, meta } = action
-    const { query, queryString, resource, timestamp, reduxResourcesActionType, normalizedResponse } = meta
+    const {
+        query,
+        queryString,
+        resource,
+        timestamp,
+        reduxResourcesActionType,
+        normalizedResponse,
+    } = meta
+    const resourceState = state[resource]
+
     switch (reduxResourcesActionType) {
     case SELECT_RESOURCE_LIST:
         return {
             ...state,
-            selectedResourceList: queryString,
+            [resource]: {
+                ...resourceState,
+                selectedResourceList: queryString,
+            },
         }
     case LIST_RESOURCE_REQUEST:
         return {
             ...state,
-            isFetching: true,
-            selectedResourceList: queryString,
-            resourceListsBeingFetched: addToArray(queryString, state.resourceListsBeingFetched),
+            [resource]: {
+                ...resourceState,
+                isFetching: true,
+                resourceListsBeingFetched: addToArray(
+                    queryString,
+                    resourceState.resourceListsBeingFetched
+                ),
+            },
         }
     case LIST_RESOURCE_REQUEST_ERROR:
         return {
             ...state,
-            isFetching: false,
-            resourceListsBeingFetched: removeFromArray(queryString, state.resourceListsBeingFetched),
-            errors: [
-                ...state.errors,
-                ...payload,
-            ],
+            [resource]: {
+                ...resourceState,
+                isFetching: false,
+                resourceListsBeingFetched: removeFromArray(
+                    queryString,
+                    resourceState.resourceListsBeingFetched
+                ),
+                errors: [
+                    ...resourceState.errors,
+                    ...payload,
+                ],
+            },
         }
     case LIST_RESOURCE_REQUEST_SUCCESS: {
         const { entities, result } = normalizedResponse
-        return {
-            ...state,
-            isFetching: false,
-            resources: {
-                ...state.resources,
-                ...(entities[resource] || {}),
-            },
-            errors: [],
-            resourceListsBeingFetched: removeFromArray(queryString, state.resourceListsBeingFetched),
-            lastListedAt: timestamp,
-            resourceLists: {
-                ...state.resourceLists,
-                [queryString]: {
-                    result,
-                    response: payload,
-                    query,
-                    queryString,
-                },
-            },
-        }
+        return Object.keys(state).reduce((newState, resourceKey) => {
+            if (resourceKey !== resource && entities[resourceKey]) {
+                newState[resourceKey] = {
+                    ...state[resourceKey],
+                    resources: {
+                        ...state[resourceKey].resources,
+                        ...entities[resourceKey],
+                    },
+                }
+            } else if (resourceKey === resource) {
+                newState[resourceKey] = {
+                    ...state[resourceKey],
+                    isFetching: false,
+                    resources: {
+                        ...state[resourceKey].resources,
+                        ...(entities[resource] || {}),
+                    },
+                    errors: [],
+                    resourceListsBeingFetched: removeFromArray(
+                        queryString,
+                        state[resourceKey].resourceListsBeingFetched
+                    ),
+                    selectedResourceList: queryString,
+                    lastListedAt: timestamp,
+                    resourceLists: {
+                        ...state[resourceKey].resourceLists,
+                        [queryString]: {
+                            result,
+                            query,
+                            queryString,
+                        },
+                    },
+                }
+            } else {
+                newState[resourceKey] = state[resourceKey]
+            }
+            return newState
+        }, {})
     }
     }
 }
+
+export default listResourceReducer

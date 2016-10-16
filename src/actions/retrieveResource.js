@@ -65,7 +65,7 @@ const retrieveResource = ({ formatErrors, resource, request, normalizer, isCache
         }
 
         // if the resource is currently being fetched already
-        if (selectResourcesBeingFetched(state).includes(id)) return Promise.resolve()
+        if (selectResourcesBeingFetched(state, resource).includes(id)) return Promise.resolve()
 
         // dispatch the initial action that will set any fetching logic in the passed resource
         dispatch({
