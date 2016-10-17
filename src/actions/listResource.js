@@ -14,15 +14,14 @@ import {
 
 const defaultIsCached = obj => !!obj
 
-/**
-* get a list of resource with a given set of query param filters.
-* Will not fetch resource that have been previously returned and exist in Redux
-* @param {object} the config object for getResource
-*     @property {string} resource - see above for details
-*     @property {function} request - see above for details
-*     @property {function} normalizer - see above for details
-*/
-const listResource = ({ formatErrors, resource, request, normalizer, isCachedFn, stringifyQueryFn }) => {
+const listResource = ({
+    formatErrors,
+    resource,
+    request,
+    normalizer,
+    isCachedFn,
+    stringifyQueryFn,
+}) => {
     const resourceActionTypeName = generateConstantFromString(resource)
     const initialActionType = `LIST_${resourceActionTypeName}_REQUEST`
     const successActionType = `${initialActionType}_SUCCESS`

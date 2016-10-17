@@ -5,14 +5,6 @@ import {
     CREATE_RESOURCE_REQUEST_ERROR,
 } from '../constants'
 
-/**
-* create a resource with a given body payload
-* @param {object} the config object for getResource
-*     @property {string} resource - see above for details
-*     @property {function} request - see above for details
-*     @property {function} normalizer - see above for details
-*     @property {string} resourceActionName - see above for details
-*/
 const createResource = ({ formatErrors, request, resource, normalizer }) => {
     const resourceActionTypeName = generateConstantFromString(resource)
     const initialActionType = `CREATE_${resourceActionTypeName}_REQUEST`
@@ -20,12 +12,6 @@ const createResource = ({ formatErrors, request, resource, normalizer }) => {
     const errorActionType = `${initialActionType}_ERROR`
     const actionCreatorName = `create${capitalize(resource)}`
 
-    /**
-    * @param {object} the body of the request, containing all the new properties of the resource
-    * @param {object} the options object
-    *     @property {boolean} shouldThrowErrors - if true, will not pass returned errors to redux
-          but instead throw them so the fn calling can .catch them
-    */
     const createResourceActionCreator = (body, options = {}) => (dispatch, getState) => {
         const { shouldThrowErrors } = options
         const meta = { ...options, timestamp: new Date().toISOString(), resource }

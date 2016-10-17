@@ -16,11 +16,11 @@ const getResourceInitialState = () => ({
     lastUpdatedAt: null,
 })
 
-const generateResources = reducer => (state, action) => (
+const resourcesReducer = reducer => (state, action) => (
     reducer(routeReduxResourceAction(state, action))
 )
 
 module.exports = {
     getResourceInitialState,
-    generateResources,
+    resourcesReducer,
 }

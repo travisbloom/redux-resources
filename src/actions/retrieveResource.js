@@ -37,8 +37,6 @@ const retrieveResource = ({ formatErrors, resource, request, normalizer, isCache
     *     it has been previously retrieved
     *     @property {boolean} shouldThrowErrors - if true, will not pass returned errors to
     *     redux but instead throw them so the fn calling can .catch them
-    *     @property {boolean} query - query params that will be passed to
-    *     the request object (used to check for expand param and see if expanded resource exist)
     */
     const retrieveResourceActionCreator = (id, options = {}) => (dispatch, getState) => {
         const { shouldIgnoreCache, shouldThrowErrors } = options

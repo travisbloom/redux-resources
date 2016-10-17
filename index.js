@@ -8,7 +8,7 @@ import {
 
 import {
     getResourceInitialState,
-    generateResources,
+    resourcesReducer,
 } from './src/reducers'
 
 module.exports = {
@@ -19,5 +19,5 @@ module.exports = {
     deleteResource,
 
     getResourceInitialState,
-    generateResources,
+    resourcesReducer,
 }
