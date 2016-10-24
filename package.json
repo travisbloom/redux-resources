@@ -4,9 +4,13 @@
   "description": "An opinionated set of reducers, actions, and selectors to manage creating, getting, listing, updating, and deleting remote resources.",
   "main": "index.js",
   "scripts": {
-    "test": "node --harmony_proxies ./node_modules/.bin/jest --watch"
+      "test": "node --harmony_proxies ./node_modules/.bin/jest --watch",
+      "lint": "eslint src"
   },
   "keywords": [
+    "react",
+    "reactjs",
+    "flux",
     "redux"
   ],
   "author": "travisbloom@gmail.com",

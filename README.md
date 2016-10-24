@@ -24,7 +24,11 @@ import {resourcesReducer} from 'redux-resources'
 const rootReducer = combineReducers({
     //your other reducers...
 
-    //resourcesReducer expects a reducer with a series of properties that represent the names of all the resources you'll be interacting with. These reducers will generally just return state unless you'd like to layer any additional business logic on to the reducer that should occur when actions are triggered
+    /*
+    resourcesReducer expects a reducer with a series of properties that represent the names of all the
+    resources you'll be interacting with. These reducers will generally just return state unless you'd
+    like to layer any additional business logic on to the reducer that should occur when actions are triggered
+    */
     resources: resourcesReducer(
         combineReducers({
             //make sure the initialState is set to getResourceInitialState()
@@ -55,7 +59,7 @@ Now, call `retrieveExampleResource` with an ID
 ```javascript
 import {retrieveExampleResource} from './path/to/actionCreator'
 
-retrieveExampleResource('aResourceId')
+dispatch(retrieveExampleResource('aResourceId'))
 ```
 
 and after the request has complete, your state tree will look like:
@@ -109,13 +113,13 @@ npm install --save redux-resources
 ```
 
 This library uses a set of peer dependencies that have been widely adopted by the redux community:
-* [redux](REPLACEME)
-* [redux-thunk](REPLACEME)
-* [normalizr](REPLACEME)
-* [reselect](REPLACEME)
+* [redux](https://github.com/reactjs/redux)
+* [redux-thunk](https://github.com/gaearon/redux-thunk)
+* [normalizr](https://github.com/paularmstrong/normalizr)
+* [reselect](https://github.com/reactjs/reselect)
 
 ## API Reference
-*Note:* You can see snapshot examples of [actions](REPLACEME) triggered by redux resource generated action creators and the resulting [reducer states](REPLACEME).
+*Note:* You can see snapshot examples of [actions](https://github.com/travisbloom/redux-resources/tree/master/src/actions/__snapshots__) triggered by redux resource generated action creators and the resulting [reducer states](https://github.com/travisbloom/redux-resources/tree/master/src/reducers/__snapshots__).
 
 ### Action Functions
 All redux-resources action functions accept a single config object as it's only param. The response will always be an action creator with the camelCased name, "action type" + "capitalized resource". Action type constants follow a similar uppercased naming schema:
@@ -147,15 +151,21 @@ There are also a set of common config properties that must be passed to all of R
 ```javascript
 createResource({
     /*
-    the name of the resource your interacting with. Should match the names used in other parts of the codebase (for example, the normalizr Schema key)
+    the name of the resource your interacting with. Should match the names used
+    in other parts of the codebase (for example, the normalizr Schema key)
     */
     resource: 'exampleResource',
     /*
-    the normalizer function that will be used on this resource. It is suggested you use the excellent normalizr library but as long as function returns an object with {entities, result}, it will work
+    the normalizer function that will be used on this resource. It is suggested you use the excellent
+    normalizr library but as long as function returns an object with {entities, result}, it will work
     */
     normalizer: (response) => normalize(response, someNormalizrSchema),
     /*
-    request is a function that returns a Promise. The parameters passed to request vary between the different actions, but the last param will always be an options object that includes any metadata passed to the called action creator as well as dispatch and getState. This allows users to pass any params needed by custom business logic that occurs in the request fn. The only requirement is the promise resolve with the payload that should be passed in to the normalizer function
+    request is a function that returns a Promise. The parameters passed to request vary between the
+    different actions, but the last param will always be an options object that includes any metadata
+    passed to the called action creator as well as dispatch and getState. This allows users to pass any
+    params needed by custom business logic that occurs in the request fn. The only requirement is the
+    promise resolve with the payload that should be passed in to the normalizer function
     */
     request: (payload, options) => fetch('yourAPI/exampleResource').then((response) => {
         const {getState, dispatch, someMetadataPropertyPassed} = options;
@@ -221,7 +231,8 @@ const {
 retrieveExampleResource('aResourceId')
 
 /*
-retrieveResource action creators also accept a shouldIgnoreCache prop that can be passed in to options. if passed, the resource will be fetched and updated even if it already exists in the redux state
+retrieveResource action creators also accept a shouldIgnoreCache prop that can be passed in to options.
+if passed, the resource will be fetched and updated even if it already exists in the redux state
 */
 retrieveExampleResource('aResourceId', {shouldIgnoreCache: true})
 ```
@@ -240,7 +251,9 @@ const {
     formatErrors: someFormattingFn,
     normalizer: someNormalizerFn,
     /*
-    by default, redux-resources will stringify the passed query object and use that to represent the primary key of the list. If you'd like to use a different function to handle that serialization, pass the fn below in to the config
+    by default, redux-resources will stringify the passed query object and use that to represent the
+    primary key of the list. If you'd like to use a different function to handle that serialization, pass
+    the fn below in to the config
     */
     stringifyQueryFn: (query) => customeStringifyFn(query),
     /*
@@ -259,7 +272,8 @@ const exampleQuery = {limit: 30, offset: 0, status: 'active'}
 listExampleResource(exampleQuery)
 
 /*
-similar to retrieveResource, you can pass a shouldIgnoreCache prop within the options object. if passed, the list will be fetched and updated even if it already exists in the redux state
+similar to retrieveResource, you can pass a shouldIgnoreCache prop within the options object. if passed,
+the list will be fetched and updated even if it already exists in the redux state
 */
 listExampleResource(exampleQuery, {shouldIgnoreCache: true})
 ```
@@ -284,15 +298,32 @@ const payload = {someField: 'field being updated'}
 partialUpdateExampleResource('someId', payload)
 
 /*
-both action creators also accept an option isOptimisticUpdate property in the options object. When passed, the `PARTIAL_UPDATE_RESOURCE_REQUEST_SUCCESS` action triggers immediately with the new info and if an error is returned, `PARTIAL_UPDATE_RESOURCE_REQUEST_ERROR` will revert the changes in addition to setting any errors
+both action creators also accept an option isOptimisticUpdate property in the options object. When
+passed, the `PARTIAL_UPDATE_RESOURCE_REQUEST_SUCCESS` action triggers immediately with the new info and
+if an error is returned, `PARTIAL_UPDATE_RESOURCE_REQUEST_ERROR` will revert the changes in addition to
+setting any errors
 */
 partialUpdateExampleResource('someId', payload, {isOptimisticUpdate: true})
 ```
 
 #### `deleteResource(configObject)`
-TODO
-#### `resourcesReducer(combinedResourceReducers)`
-TODO
+Returns an action creator used to deletes a resource. This action creator accepts id of the resource being deleted:
+```javascript
+const {
+    DELETE_EXAMPLE_RESOURCE_REQUEST,
+    DELETE_EXAMPLE_RESOURCE_REQUEST_SUCCESS,
+    DELETE_EXAMPLE_RESOURCE_REQUEST_ERROR,
+    deleteExampleResource
+} = deleteResource({
+    resource: 'exampleResource',
+    formatErrors: someFormattingFn,
+    //request has one param before the options object, the id of the resource being requested
+    request: (id, options) => someDELETERequest(id)
+})
+
+//action creator has one param before the options object, the query of the requested list
+listExampleResource('exampleId')
+```
 
 ## Extending Redux Resources functionality
 The library builds on top of redux but purposely plays nice with any other existing business logic you would like to add.

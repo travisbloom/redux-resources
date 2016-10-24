@@ -20,22 +20,21 @@ const deleteResource = ({ formatErrors, request, resource }) => {
             payload: id,
             meta: { ...meta, reduxResourcesActionType: DELETE_RESOURCE_REQUEST },
         })
-        return request(id, { ...options, dispatch, getState })
-            .then(() => {
-                dispatch({
-                    type: successActionType,
-                    payload: id,
-                    meta: { ...meta, reduxResourcesActionType: DELETE_RESOURCE_REQUEST_SUCCESS },
-                })
+        return request(id, { ...options, dispatch, getState }).then(() => {
+            dispatch({
+                type: successActionType,
+                payload: id,
+                meta: { ...meta, reduxResourcesActionType: DELETE_RESOURCE_REQUEST_SUCCESS },
             })
-            .catch((response) => {
-                dispatch({
-                    type: errorActionType,
-                    payload: formatErrors(response),
-                    meta: { ...meta, reduxResourcesActionType: DELETE_RESOURCE_REQUEST_ERROR },
-                })
-                if (shouldThrowErrors) throw response
+        })
+        .catch((response) => {
+            dispatch({
+                type: errorActionType,
+                payload: formatErrors(response),
+                meta: { ...meta, reduxResourcesActionType: DELETE_RESOURCE_REQUEST_ERROR },
             })
+            if (shouldThrowErrors) throw response
+        })
     }
     return {
         [initialActionType]: initialActionType,

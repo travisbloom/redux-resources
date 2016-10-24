@@ -72,26 +72,25 @@ const retrieveResource = ({ formatErrors, resource, request, normalizer, isCache
             meta: { ...meta, reduxResourcesActionType: RETRIEVE_RESOURCE_REQUEST },
         })
 
-        return request(id, { ...options, dispatch, getState })
-            .then((response) => {
-                dispatch({
-                    type: successActionType,
-                    payload: response,
-                    meta: {
-                        ...meta,
-                        normalizedResponse: normalizer(response),
-                        reduxResourcesActionType: RETRIEVE_RESOURCE_REQUEST_SUCCESS,
-                    },
-                })
+        return request(id, { ...options, dispatch, getState }).then((response) => {
+            dispatch({
+                type: successActionType,
+                payload: response,
+                meta: {
+                    ...meta,
+                    normalizedResponse: normalizer(response),
+                    reduxResourcesActionType: RETRIEVE_RESOURCE_REQUEST_SUCCESS,
+                },
             })
-            .catch((response) => {
-                dispatch({
-                    type: errorActionType,
-                    payload: formatErrors(response),
-                    meta: { ...meta, reduxResourcesActionType: RETRIEVE_RESOURCE_REQUEST_ERROR },
-                })
-                if (shouldThrowErrors) throw response
+        })
+        .catch((response) => {
+            dispatch({
+                type: errorActionType,
+                payload: formatErrors(response),
+                meta: { ...meta, reduxResourcesActionType: RETRIEVE_RESOURCE_REQUEST_ERROR },
             })
+            if (shouldThrowErrors) throw response
+        })
     }
 
     return {

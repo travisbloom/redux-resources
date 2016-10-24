@@ -52,20 +52,19 @@ const updateResource = ({ request, resource, normalizer, formatErrors }) => {
                 },
             })
 
-            return request(id, body, { ...options, dispatch, getState })
-                    .catch((response) => {
-                        dispatch({
-                            type: errorActionType,
-                            payload: formatErrors(response),
-                            meta: {
-                                ...meta,
-                                replacedLastUpdatedAt,
-                                replacedResource: { ...replacedResource },
-                                reduxResourcesActionType: UPDATE_RESOURCE_REQUEST_ERROR,
-                            },
-                        })
-                        if (shouldThrowErrors) throw response
-                    })
+            return request(id, body, { ...options, dispatch, getState }).catch((response) => {
+                dispatch({
+                    type: errorActionType,
+                    payload: formatErrors(response),
+                    meta: {
+                        ...meta,
+                        replacedLastUpdatedAt,
+                        replacedResource: { ...replacedResource },
+                        reduxResourcesActionType: UPDATE_RESOURCE_REQUEST_ERROR,
+                    },
+                })
+                if (shouldThrowErrors) throw response
+            })
         }
 
         dispatch({
@@ -74,29 +73,28 @@ const updateResource = ({ request, resource, normalizer, formatErrors }) => {
             meta: { ...meta, reduxResourcesActionType: UPDATE_RESOURCE_REQUEST },
         })
 
-        return request(id, body, { ...options, dispatch, getState })
-                .then((response) => {
-                    dispatch({
-                        type: successActionType,
-                        payload: response,
-                        meta: {
-                            ...meta,
-                            normalizedResponse: normalizer(response),
-                            reduxResourcesActionType: UPDATE_RESOURCE_REQUEST_SUCCESS,
-                        },
-                    })
-                })
-                .catch((response) => {
-                    dispatch({
-                        type: errorActionType,
-                        payload: formatErrors(response),
-                        meta: {
-                            ...meta,
-                            reduxResourcesActionType: UPDATE_RESOURCE_REQUEST_ERROR,
-                        },
-                    })
-                    if (shouldThrowErrors) throw response
-                })
+        return request(id, body, { ...options, dispatch, getState }).then((response) => {
+            dispatch({
+                type: successActionType,
+                payload: response,
+                meta: {
+                    ...meta,
+                    normalizedResponse: normalizer(response),
+                    reduxResourcesActionType: UPDATE_RESOURCE_REQUEST_SUCCESS,
+                },
+            })
+        })
+        .catch((response) => {
+            dispatch({
+                type: errorActionType,
+                payload: formatErrors(response),
+                meta: {
+                    ...meta,
+                    reduxResourcesActionType: UPDATE_RESOURCE_REQUEST_ERROR,
+                },
+            })
+            if (shouldThrowErrors) throw response
+        })
     }
 
     return {
