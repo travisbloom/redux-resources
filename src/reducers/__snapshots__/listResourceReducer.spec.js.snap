@@ -80,7 +80,7 @@ Object {
     "isFetching": false,
     "lastCreatedAt": null,
     "lastDeletedAt": null,
-    "lastListedAt": "2016-01-01T05:00:00.000Z",
+    "lastListedAt": "2016-01-01T00:00:00.000Z",
     "lastRetrievedAt": null,
     "lastUpdatedAt": null,
     "resourceLists": Object {

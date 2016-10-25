@@ -3,7 +3,7 @@ Object {
   "meta": Object {
     "reduxResourcesActionType": "CREATE_RESOURCE_REQUEST_ERROR",
     "resource": "mockResources",
-    "timestamp": "2016-01-01T05:00:00.000Z",
+    "timestamp": "2016-01-01T00:00:00.000Z",
   },
   "payload": Array [
     "This is an initial error",
@@ -39,7 +39,7 @@ Object {
     },
     "reduxResourcesActionType": "CREATE_RESOURCE_REQUEST_SUCCESS",
     "resource": "mockResources",
-    "timestamp": "2016-01-01T05:00:00.000Z",
+    "timestamp": "2016-01-01T00:00:00.000Z",
   },
   "payload": Object {
     "id": "resourceId",
@@ -59,7 +59,7 @@ Object {
   "meta": Object {
     "reduxResourcesActionType": "CREATE_RESOURCE_REQUEST",
     "resource": "mockResources",
-    "timestamp": "2016-01-01T05:00:00.000Z",
+    "timestamp": "2016-01-01T00:00:00.000Z",
   },
   "payload": Object {
     "id": "resourceId",

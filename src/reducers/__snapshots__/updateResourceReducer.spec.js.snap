@@ -145,7 +145,7 @@ Object {
     "lastDeletedAt": null,
     "lastListedAt": null,
     "lastRetrievedAt": null,
-    "lastUpdatedAt": "2016-01-01T05:00:00.000Z",
+    "lastUpdatedAt": "2016-01-01T00:00:00.000Z",
     "resourceLists": Object {},
     "resourceListsBeingFetched": Array [],
     "resources": Object {

@@ -9,7 +9,7 @@ Object {
     "queryString": "key=30&key=0&key=\"someValue\"",
     "reduxResourcesActionType": "LIST_RESOURCE_REQUEST_ERROR",
     "resource": "mockResources",
-    "timestamp": "2016-01-01T05:00:00.000Z",
+    "timestamp": "2016-01-01T00:00:00.000Z",
   },
   "payload": Array [
     "This is an initial error",
@@ -51,7 +51,7 @@ Object {
     "queryString": "key=30&key=0&key=\"someValue\"",
     "reduxResourcesActionType": "LIST_RESOURCE_REQUEST_SUCCESS",
     "resource": "mockResources",
-    "timestamp": "2016-01-01T05:00:00.000Z",
+    "timestamp": "2016-01-01T00:00:00.000Z",
   },
   "payload": Array [
     Object {
@@ -79,7 +79,7 @@ Object {
     "queryString": "key=30&key=0&key=\"someValue\"",
     "reduxResourcesActionType": "SELECT_RESOURCE_LIST",
     "resource": "mockResources",
-    "timestamp": "2016-01-01T05:00:00.000Z",
+    "timestamp": "2016-01-01T00:00:00.000Z",
   },
   "payload": "key=30&key=0&key=\"someValue\"",
   "type": "SELECT_MOCK_RESOURCES_LIST",
@@ -97,7 +97,7 @@ Object {
     "queryString": "key=30&key=0&key=\"someValue\"",
     "reduxResourcesActionType": "LIST_RESOURCE_REQUEST",
     "resource": "mockResources",
-    "timestamp": "2016-01-01T05:00:00.000Z",
+    "timestamp": "2016-01-01T00:00:00.000Z",
   },
   "payload": "key=30&key=0&key=\"someValue\"",
   "type": "LIST_MOCK_RESOURCES_REQUEST",
