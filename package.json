@@ -1,10 +1,11 @@
 {
   "name": "redux-resources",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An opinionated set of reducers, actions, and selectors to manage creating, getting, listing, updating, and deleting remote resources.",
   "main": "./lib/index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
+    "prepublish": "npm run test && npm run clean && npm run build",
     "clean": "rimraf dist lib",
     "test": "jest --coverage && codecov",
     "test:watch": "jest --watch",

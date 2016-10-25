@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect'
 
 const selectResourceList = (state, resource, listKey) => (
     state.resources[resource].resourceLists[listKey]
@@ -19,6 +20,11 @@ const selectResourcesBeingFetched = (state, resource) => (
     state.resources[resource].resourcesBeingFetched
 )
 
+const selectAndDenormalizeResourceList = resource => createSelector(
+    (state, listKey) => selectResourceList(state, resource, listKey),
+    state => state.resources[resource].resources,
+    (resourceList, resources) => resourceList.result.map(id => resources[id])
+)
 
 module.exports = {
     selectResourceList,
@@ -27,4 +33,5 @@ module.exports = {
     selectResource,
     selectSelectedResource,
     selectResourcesBeingFetched,
+    selectAndDenormalizeResourceList,
 }
