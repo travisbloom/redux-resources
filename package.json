@@ -2,10 +2,13 @@
   "name": "redux-resources",
   "version": "0.1.0",
   "description": "An opinionated set of reducers, actions, and selectors to manage creating, getting, listing, updating, and deleting remote resources.",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
-      "test": "node --harmony_proxies ./node_modules/.bin/jest --watch",
-      "lint": "eslint src"
+    "build": "babel src --out-dir lib",
+    "clean": "rimraf dist lib",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src"
   },
   "keywords": [
     "react",
@@ -13,10 +16,14 @@
     "flux",
     "redux"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/travisbloom/redux-resources"
+  },
   "author": "travisbloom@gmail.com",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.16.0",
+    "babel-cli": "^6.18.0",
     "babel-polyfill": "^6.16.0",
     "babel-preset-es2016": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
@@ -26,16 +33,20 @@
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
-    "jest": "^16.0.1"
-  },
-  "dependencies": {
-    "redux-mock-store": "^1.2.1",
+    "jest": "^16.0.1",
     "mockdate": "^1.0.4",
-    "normalizr": "^2.2.1",
+    "redux-mock-store": "^1.2.1",
+    "rimraf": "^2.5.4"
+  },
+  "peerDependencies": {
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "normalizr": "^2.2.1",
+    "reselect": "^2.5.4"
   },
   "jest": {
-    "setupFiles": ["<rootDir>/src/tests.js"]
+    "setupFiles": [
+      "<rootDir>/src/tests.js"
+    ]
   }
 }
