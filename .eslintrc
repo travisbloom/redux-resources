@@ -11,7 +11,7 @@
         "react/jsx-filename-extension": 0,
         "react/no-unused-prop-types": 0,
         "react/no-multi-comp": 0,
-        "no-unused-vars": [2, { "argsIgnorePattern": "^_" }],
+        "no-unused-vars": [2, { "varsIgnorePattern": "^_" }],
         "no-confusing-arrow": 0,
         "global-require": 0,
         "consistent-return": 0,
