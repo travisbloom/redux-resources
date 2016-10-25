@@ -1,5 +1,8 @@
 # Redux Resources
 
+[![Build Status](https://travis-ci.org/travisbloom/redux-resources.svg?branch=master)](https://travis-ci.org/travisbloom/redux-resources)
+
+
 ### An opinionated, yet extendable, set of redux action creators and reducers that simplify creating, reading, updating, and deleting remote resources. Redux Resources takes the boilerplate out of managing your api cache.
 
 ## The Gist
