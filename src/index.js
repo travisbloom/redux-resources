@@ -3,6 +3,7 @@ import {
     listResource,
     retrieveResource,
     updateResource,
+    partialUpdateResource,
     deleteResource,
 } from './actions'
 
@@ -29,6 +30,7 @@ module.exports = {
     retrieveResource,
     updateResource,
     deleteResource,
+    partialUpdateResource,
 
     getResourceInitialState,
     resourcesReducer,
