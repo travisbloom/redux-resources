@@ -36,7 +36,11 @@
     "jest": "^16.0.1",
     "mockdate": "^1.0.4",
     "redux-mock-store": "^1.2.1",
-    "rimraf": "^2.5.4"
+    "rimraf": "^2.5.4",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
+    "normalizr": "^2.2.1",
+    "reselect": "^2.5.4"
   },
   "peerDependencies": {
     "redux": "^3.6.0",
