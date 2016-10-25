@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src --out-dir lib",
     "clean": "rimraf dist lib",
-    "test": "jest",
+    "test": "jest --coverage && codecov",
     "test:watch": "jest --watch",
     "lint": "eslint src"
   },
@@ -28,6 +28,7 @@
     "babel-preset-es2016": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-3": "^6.17.0",
+    "codecov": "^1.0.1",
     "eslint": "^3.7.0",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^2.0.0",
@@ -35,12 +36,12 @@
     "eslint-plugin-react": "^6.3.0",
     "jest": "^16.0.1",
     "mockdate": "^1.0.4",
-    "redux-mock-store": "^1.2.1",
-    "rimraf": "^2.5.4",
-    "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0",
     "normalizr": "^2.2.1",
-    "reselect": "^2.5.4"
+    "redux": "^3.6.0",
+    "redux-mock-store": "^1.2.1",
+    "redux-thunk": "^2.1.0",
+    "reselect": "^2.5.4",
+    "rimraf": "^2.5.4"
   },
   "peerDependencies": {
     "redux": "^3.6.0",
@@ -51,6 +52,7 @@
   "jest": {
     "setupFiles": [
       "<rootDir>/src/tests.js"
-    ]
+    ],
+    "coverageDirectory": "./coverage/"
   }
 }

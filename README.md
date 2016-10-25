@@ -1,6 +1,10 @@
 # Redux Resources
 
+[![NPM Version](https://img.shields.io/npm/v/redux-resources.svg?style=flat)](https://www.npmjs.com/package/redux-resources)
+[![NPM Downloads](https://img.shields.io/npm/dm/redux-resources.svg?style=flat)](https://www.npmjs.com/package/redux-resources)
 [![Build Status](https://travis-ci.org/travisbloom/redux-resources.svg?branch=master)](https://travis-ci.org/travisbloom/redux-resources)
+[![codecov.io](https://codecov.io/gh/travisbloom/redux-resources/branch/master/graph/badge.svg)](https://codecov.io/gh/travisbloom/redux-resources)
+
 
 
 ### An opinionated, yet extendable, set of redux action creators and reducers that simplify creating, reading, updating, and deleting remote resources. Redux Resources takes the boilerplate out of managing your api cache.
